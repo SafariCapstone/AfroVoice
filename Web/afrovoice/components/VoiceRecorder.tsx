@@ -1,8 +1,6 @@
 "use client"
 import { motion } from 'framer-motion';
 import React, { useState, useEffect } from 'react'
-import { FiCopy, FiCheck, FiMicOff, FiMic } from 'react-icons/fi';
-// import { fiCopy } from 'react-icons/fi'
 
 const dummyText = 'hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, hello this test, AfroVoice is a amharic audio transcription app and, ';
 export default function VoiceRecorder() {
@@ -19,9 +17,6 @@ export default function VoiceRecorder() {
 
     return (
     <>
-    {/* <div className='bg-gray-800 text-white p-4 text-center text-2xl font-bold'>
-        AfroVoice
-    </div> */}
 
     <div className='bg-gray-800 text-white p-4 text-center rounded-lg'>
         <h1 className='text-3xl font-bold mb-2'>AfroVoice</h1>
