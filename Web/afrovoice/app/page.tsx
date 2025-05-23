@@ -1,9 +1,11 @@
-import VoiceRecorder from "@/components/VoiceRecorder";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen items-center p-8 gap-8 sm:p-20">
-    <VoiceRecorder />
+    <div className="flex flex-col min-h-screen items-center p-8 gap-8 sm:p-20 bg-gradient-to-br from-gray-800 via-gray-900 to-purple-600 bg-[length:400%_400%] animate-[gradient_12s_ease_infinite] ">
+      <Header />
+      <Hero />
     </div>
   );
 }
