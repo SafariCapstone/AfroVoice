@@ -4,12 +4,12 @@ import React from 'react'
 const Hero = () => {
   return (
     <>
-    <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-5xl font-bold text-white mb-6" >Turn <span className="text-blue-400">Speach</span> into Text Instantly by <span className="text-purple-400">AfroVoice.</span></h1>        
-        <p className="text-xl text-gray-300 mb-8">Record or Upload any audio file and get accurate Amharic transcripts in seconds.</p>
+    <div className="max-w-2xl mx-auto min-h-[80vh] flex flex-col justify-center items-center text-center p-6 ">
+        <h1 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-[#747583] to-[#4514F5] bg-clip-text text-transparent" >Turn Speach into Text</h1>        
+        <p className="text-xl text-gray-600 mb-12 max-w-lg">Record or Upload any audio file and get accurate Amharic transcripts in seconds.</p>
         <Link 
         href="/transcribe"
-        className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-lg">Try Free Now
+        className="bg-[#180267] py-4 px-6 rounded-full hover:bg-[#360267] transition-colors">Try now
         </Link>
       </div>
     </>

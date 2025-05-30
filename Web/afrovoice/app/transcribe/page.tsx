@@ -61,7 +61,7 @@ const AudioTranscriber = () => {
         
         <Link href='/'>
           <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent transition ">
-            AfroVoice
+            LSAN
           </span>
         </Link>
 
@@ -86,8 +86,8 @@ const AudioTranscriber = () => {
             <ReactMic
                 record={isRecording}
                 onStop={onStop}
-                strokeColor="#7c3aed"  // Purple-600
-                backgroundColor="oklch(21% .034 264.665)" // Purple-50
+                strokeColor="#7c3aed"  
+                backgroundColor="#ffffff" 
                 className={`mt-2 w-52 h-14 rounded-full ${isRecording ? 'visible' : 'hidden'}`}
             />
         </div>
@@ -96,7 +96,7 @@ const AudioTranscriber = () => {
            <div className='bg-white text-black font-bold rounded-tl-lg rounded-tr-lg p-2'>
                 <span>transcribed Text</span>
             </div> 
-            <div className='max-h-48 bg-white rounded-br-lg rounded-bl-lg border-2 border-gray-200 text-gray-800 overflow-y-auto p-2  '>
+            <div className='max-h-48 bg-white rounded-lg rounded-bl-lg border-2 border-gray-200 text-gray-800 overflow-y-auto p-2  '>
                 <button 
                         onClick={handlecopy}
                         className='absolute right-4 top-4 p-1.5 border-none shadow-sm bg-gray-200 m-2 cursor-pointer'>
@@ -123,7 +123,7 @@ const AudioTranscriber = () => {
                     />
 
                     <button
-                    className='bg-white text-blue-600 p-4 rounded-lg cursor-pointer'>
+                    className='bg-blue-600 text-white p-4 rounded-lg cursor-pointer'>
                         <FaFileUpload />
                 </button>
                 </div>
@@ -136,7 +136,7 @@ const AudioTranscriber = () => {
                     }
                 </button>
 
-                <button className='bg-white text-purple-600 p-4 rounded-lg cursor-pointe'>
+                <button className='bg-purple-600 text-white p-4 rounded-lg cursor-pointe'>
                     <FaUser />
                 </button>
             </div>

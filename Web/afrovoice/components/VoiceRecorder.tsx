@@ -20,7 +20,7 @@ export default function VoiceRecorder() {
     <>
 
     <div className='bg-gray-800 text-white p-4 text-center rounded-lg'>
-        <h1 className='text-3xl font-bold mb-2'>AfroVoice</h1>
+        <h1 className='text-3xl font-bold mb-2'>LSAN</h1>
         <p className='text-gray-300 text-lg'>Record and Transcribe your audio</p>
     </div>
 
