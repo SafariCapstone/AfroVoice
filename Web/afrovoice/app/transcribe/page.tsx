@@ -45,16 +45,25 @@ const AudioTranscriber = () => {
     setUploadedAudio(null);
   };
 
-  const handleUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    
-    const audioURL = URL.createObjectURL(file);
-    setUploadedAudio({blobURL: audioURL});
-    console.log(uploadedAudio);
-    setRecordedBlob(null);
-    setIsPlaying(false);
-  }
+     const fileInputRef = useRef(null);
+    const [fileName, setFileName] = useState('');
+  const handleUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        setFileName(file.name);
+        const audioURL = URL.createObjectURL(file);
+        setUploadedAudio({blobURL: audioURL});
+        setRecordedBlob(null);
+        setIsPlaying(false);
+        
+        // Automatically transcribe after upload
+        await transcribeAudio(audioURL);
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    }
 
   return (
     <div className="flex flex-col min-h-screen p-8 gap-8 text-center">
@@ -66,22 +75,27 @@ const AudioTranscriber = () => {
         </Link>
 
         <div className='flex gap-2 p-2 justify-center items-center '>
-            {(recordedBlob && !isRecording) && (
-                <>
-                    <div>
-                        <audio 
-                        src={recordedBlob.blobURL}
-                        ref={audioRef}
-                        onEnded = {() => setIsPlaying(false)}
-                        />
-                        <button className='border-2 border-purple-600 text-purple-500 rounded-full p-3 cursor-pointer hover:bg-amber-50 transition-colors' onClick={togglePlay} >
-                            {
-                                isPlaying ? (<FaPause />) : (<FaPlay />)
-                            }
-                            </button>
-                    </div>
-                </>
-            )}
+                {(!isRecording || uploadedAudio) && (
+                    <>
+                        <div>
+                            <audio
+                            src={recordedBlob?.blobURL || uploadedAudio?.blobURL}
+                            ref={audioRef}
+                            onEnded = {() => setIsPlaying(false)}
+                            />
+                            <button className='border-2 border-purple-600 text-purple-500 rounded-full p-3 cursor-pointer hover:bg-amber-50 transition-colors' onClick={togglePlay} >
+                                {
+                                    isPlaying ? (<FaPause />) : (<FaPlay />)
+                                }
+                                </button>
+
+                            {uploadedAudio ? <>
+                            <span className='text-gray-900 ml-2'> : {fileName}</span>
+                            </> : <></>}
+                        </div>
+                    </>
+                )}
+               
             
             <ReactMic
                 record={isRecording}
@@ -136,9 +150,9 @@ const AudioTranscriber = () => {
                     }
                 </button>
 
-                <button className='bg-purple-600 text-white p-4 rounded-lg cursor-pointe'>
+                <Link href='/dashboard' className='bg-purple-600 text-white p-4 rounded-lg cursor-pointe'>
                     <FaUser />
-                </button>
+                </Link>
             </div>
         </div>
     </div>
@@ -146,3 +160,7 @@ const AudioTranscriber = () => {
 }
 
 export default AudioTranscriber;
+
+function setFileName(name: any) {
+    throw new Error('Function not implemented.');
+}

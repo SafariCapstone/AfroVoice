@@ -4,8 +4,14 @@ import { FaFacebook, FaInbox, FaInstagram, FaLinkedin, FaLocationArrow, FaMailBu
 import { FaLocationPin } from 'react-icons/fa6';
 import { FcAddressBook } from 'react-icons/fc';
 import { SiGmail } from 'react-icons/si';
+import ThemeToggle from './ThemeToggle';
+import { getLoggedInUser } from '@/actions/auth';
+import Login from '@/app/login/page';
+import Logout from './Logout';
 
-const Header = () => {
+const Header = async () => {
+  const user:UserDetails | null = await getLoggedInUser();
+  console.log('Current user:', user);
   return (
     <>
     <header className="text-[#0B0327]">
@@ -74,16 +80,19 @@ const Header = () => {
         </div>
 
         <div>
-          <Link href='/login' className='bg-[#180267] text-white w-13 h-12 p-4 rounded-lg'>Login</Link>
+          {user ? (
+            <div className='text-blue-950 flex m-2 items-center'>
+              <span className='mr-4'>{user?.name}</span>
+              <Logout />
+            </div>
+          ): (
+              <Link href='/login' className='bg-[#180267] text-white w-13 h-12 p-4 rounded-lg'>Login</Link>
+          )}
+          
         </div>
+        {/* <ThemeToggle /> */}
       </nav>
 
-        {/* <nav className="mt-4 flex gap-4 items-center justify-center text-center pb-2 border-b-1 border-b-gray-300/25">
-          <Link className="text-sm text-white/80 hover:text-white transition hover:underline underline-offset-4" href='/features'>Features</Link>
-          <Link className="text-sm text-white/80 hover:text-white transition hover:underline underline-offset-4" href='/contact'>Contact</Link>
-          <Link className="text-sm text-white/80 hover:text-white transition hover:underline underline-offset-4" href='/login'>Login</Link>
-          <Link className="text-sm text-white/80 hover:text-white transition hover:underline underline-offset-4 bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg" href='/transcribe'>Try Free</Link>
-        </nav> */}
       </header>
     </>
   )
