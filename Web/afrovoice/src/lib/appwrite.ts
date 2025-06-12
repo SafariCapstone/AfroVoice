@@ -5,32 +5,12 @@ import { cookies } from "next/headers";
 import { get } from "http";
 import { Databases } from "node-appwrite";
 
-// export async function createSessionClient() {
-//   const client = new Client()
-//     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-//     // .setProject(process.env.APPWRITE_PTOJECT!);
-//     .setProject(process.env.APPWRITE_PTOJECT!) // "PTOJECT" should be "PROJECT"
-
-//   const session = cookies().get("appwrite-session");
-//   if (!session || !session.value) {
-//     return;
-//   }
-
-//   client.setSession(session.value);
-
-//   return {
-//     get account() {
-//       return new Account(client);
-//     },
-//   };
-// }
-
 export async function createSessionClient() {
   const client = new Client()
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(process.env.APPWRITE_PTOJECT!); // Fixed typo: PTOJECT → PROJECT
+    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
-    const cookieStore = cookies();
+  const cookieStore = cookies();
   const session = (await cookieStore).get("appwrite-session");
   
   if (!session || !session.value) {
@@ -47,23 +27,10 @@ export async function createSessionClient() {
 }
 
 export async function createAdminClient() {
-    
   const client = new Client()
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(process.env.APPWRITE_PTOJECT!)
+    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
     .setKey(process.env.NEXT_APPWRITE_KEY!);
-
-  // return {
-  //   get account() {
-  //     return new Account(client);
-  //   },
-  //   get database() {
-  //        return new Databases(client);
-  //   }, 
-  //   get user() {
-  //       return new Users(client);
-  //   }
-  // };
 
   return {
     account: new Account(client),

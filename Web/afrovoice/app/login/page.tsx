@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { FaLock, FaUser } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
-import { Account, ID } from 'appwrite'
+import { Account, ID, Client } from 'appwrite'
 import { signIn } from '@/actions/auth'
 import { useRouter } from 'next/navigation'
 import { sign } from 'crypto'
@@ -40,9 +40,22 @@ function Login() {
     } finally {
         setLoading(false);
     }
-
-
   }
+
+  const handleGoogleLogin = async () => {
+    const client = new Client()
+      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
+
+    const account = new Account(client);
+
+    // Redirect to Appwrite OAuth2 session
+    account.createOAuth2Session(
+      "google",
+      `${window.location.origin}/auth/callback`, // Success redirect
+      `${window.location.origin}/login`          // Failure redirect
+    );
+  };
 
   return (
     <div className='min-h-screen bg-gray-100 flex flex-col justify-center py-12 lg:px-8'>
@@ -120,17 +133,14 @@ function Login() {
               </div>
             </div>
 
-
             <div className='mt-6 grid'>
               <button
               type='button'
-              onClick={() => handleLogin}
+              onClick={handleGoogleLogin}
               className='w-full inline-flex items-center justify-center text-gray-900 border border-gray-300 rounded-lg bg-white py-2 px-4 '
               >
-                {
-                  <FcGoogle />
-                }
-                oogle
+                <FcGoogle />
+                Sign in with Google
               </button>
             </div>
 
